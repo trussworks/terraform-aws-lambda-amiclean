@@ -94,7 +94,8 @@ resource "aws_iam_policy" "main" {
 
 # Lambda function
 module "amiclean_lambda" {
-  source = "github.com/trussworks/terraform-aws-lambda"
+  source  = "trussworks/lambda/aws"
+  version = "~>1.0.0"
 
   name                   = "${local.name}"
   job_identifier         = "${var.job_identifier}"
