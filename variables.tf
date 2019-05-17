@@ -17,7 +17,7 @@ variable "ami_clean_prefix" {
 
 variable "ami_clean_retention_days" {
   default     = 30
-  description = "Age of AMI in days before it is a candidate for removal."
+  description = "Age of AMI in days before it is a candidate for removal. Default is 30 days."
   type        = "string"
 }
 
@@ -35,13 +35,13 @@ variable "ami_clean_tag_value" {
 
 variable "cloudwatch_logs_retention_days" {
   default     = 90
-  description = "Number of days to retain Cloudwatch logs."
+  description = "Number of days to retain Cloudwatch logs. Default is 90 days."
   type        = "string"
 }
 
 variable "interval_minutes" {
-  default     = 1440
-  description = "How often to run the AMI purging job, in minutes."
+  default     = 1440  # 1 day
+  description = "How often to run the AMI purging job, in minutes. Default is 1440 (1 day)."
   type        = "string"
 }
 
