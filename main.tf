@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "main" {
     resources = ["*"]
   }
 
-  # Allow deregistering AMIs.
+  # Allow deregistering AMIs. DeregisterImage does not allow resource constraints.
   statement {
     sid    = "DeregisterImage"
     effect = "Allow"
@@ -114,7 +114,9 @@ module "amiclean_lambda" {
     TAG_KEY        = "${var.ami_clean_tag_key}"
     TAG_VALUE      = "${var.ami_clean_tag_value}"
     INVERT         = "${var.ami_clean_invert}"
-    LAMBDA         = true
+
+    # This will run the AMI cleaner with its Lambda handler.
+    LAMBDA = true
   }
 
   tags {
