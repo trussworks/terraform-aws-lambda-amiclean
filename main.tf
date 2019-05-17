@@ -96,10 +96,11 @@ resource "aws_iam_policy" "main" {
 module "amiclean_lambda" {
   source = "github.com/trussworks/terraform-aws-lambda"
 
-  name             = "${local.name}"
-  job_identifier   = "${var.job_identifier}"
-  runtime          = "go1.x"
-  role_policy_arns = ["${aws_iam_policy.main.arn}"]
+  name                   = "${local.name}"
+  job_identifier         = "${var.job_identifier}"
+  runtime                = "go1.x"
+  role_policy_arns_count = 1
+  role_policy_arns       = ["${aws_iam_policy.main.arn}"]
 
   s3_bucket = "${var.s3_bucket}"
   s3_key    = "${local.pkg}/${var.version_to_deploy}/${local.pkg}.zip"
