@@ -40,7 +40,8 @@ variable "cloudwatch_logs_retention_days" {
 }
 
 variable "interval_minutes" {
-  default     = 1440  # 1 day
+  # 1440 minutes makes this run once daily.
+  default     = 1440
   description = "How often to run the AMI purging job, in minutes. Default is 1440 (1 day)."
   type        = "string"
 }

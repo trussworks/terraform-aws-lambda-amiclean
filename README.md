@@ -34,11 +34,11 @@ as how to deploy it, see <https://github.com/trussworks/truss-aws-tools>.
 | ami\_clean\_delete | Perform the actual delete of AMIs and snapshots | string | n/a | yes |
 | ami\_clean\_invert | If set, operates on all AMIs *not* tagged with the given tag. | string | `"false"` | no |
 | ami\_clean\_prefix | If set, operates only on AMIs with name that start with this prefix. | string | `""` | no |
-| ami\_clean\_retention\_days | Age of AMI in days before it is a candidate for removal. | string | `"30"` | no |
+| ami\_clean\_retention\_days | Age of AMI in days before it is a candidate for removal. Default is 30 days. | string | `"30"` | no |
 | ami\_clean\_tag\_key | Key of tag to operate on. Requires tag value to also be set. | string | `""` | no |
 | ami\_clean\_tag\_value | Value of tag to operate on. Requires tag key to also be set. | string | `""` | no |
-| cloudwatch\_logs\_retention\_days | Number of days to retain Cloudwatch logs. | string | `"90"` | no |
-| interval\_minutes | How often to run the AMI purging job, in minutes. | string | `"1440"` | no |
+| cloudwatch\_logs\_retention\_days | Number of days to retain Cloudwatch logs. Default is 90 days. | string | `"90"` | no |
+| interval\_minutes | How often to run the AMI purging job, in minutes. Default is 1440 (1 day). | string | `"1440"` | no |
 | job\_identifier | A generic job identifier to make resources for this job more obvious. | string | n/a | yes |
 | s3\_bucket | The name of the S3 bucket used to store the Lambda builds. | string | n/a | yes |
 | version\_to\_deploy | The version of the Lambda function to deploy. | string | n/a | yes |
