@@ -97,11 +97,12 @@ module "amiclean_lambda" {
   source  = "trussworks/lambda/aws"
   version = "~>1.0.0"
 
-  name                   = "${local.name}"
-  job_identifier         = "${var.job_identifier}"
-  runtime                = "go1.x"
-  role_policy_arns_count = 1
-  role_policy_arns       = ["${aws_iam_policy.main.arn}"]
+  name                           = "${local.name}"
+  job_identifier                 = "${var.job_identifier}"
+  runtime                        = "go1.x"
+  role_policy_arns_count         = 1
+  role_policy_arns               = ["${aws_iam_policy.main.arn}"]
+  cloudwatch_logs_retention_days = "${var.cloudwatch_logs_retention_days}"
 
   s3_bucket = "${var.s3_bucket}"
   s3_key    = "${local.pkg}/${var.version_to_deploy}/${local.pkg}.zip"
