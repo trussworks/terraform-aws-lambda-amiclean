@@ -110,7 +110,7 @@ module "amiclean_lambda" {
   source_types = ["events"]
   source_arns  = ["${aws_cloudwatch_event_rule.main.arn}"]
 
-  env_vars {
+  env_vars = {
     DELETE         = "${var.ami_clean_delete}"
     NAME_PREFIX    = "${var.ami_clean_prefix}"
     RETENTION_DAYS = "${var.ami_clean_retention_days}"
@@ -122,7 +122,7 @@ module "amiclean_lambda" {
     LAMBDA = true
   }
 
-  tags {
+  tags = {
     Name = "${local.name}-${var.job_identifier}"
   }
 }
