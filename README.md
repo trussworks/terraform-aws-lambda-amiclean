@@ -1,4 +1,3 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 Creates a Lambda function with associated role and policies that
 will run the ami-cleaner tool to get rid of AMIs that are no longer
 needed.
@@ -53,5 +52,3 @@ as how to deploy it, see <https://github.com/trussworks/truss-aws-tools>.
 | Name | Description |
 |------|-------------|
 | lambda\_arn | ARN for the amicleaner lambda function |
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
