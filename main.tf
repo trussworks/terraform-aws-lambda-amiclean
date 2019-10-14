@@ -33,7 +33,8 @@ locals {
   name = "ami-cleaner"
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
+}
 
 # This is the main policy this job is going to need.
 data "aws_iam_policy_document" "main" {
@@ -89,35 +90,34 @@ data "aws_iam_policy_document" "main" {
 # Create the policy for the document we just added above.
 resource "aws_iam_policy" "main" {
   name   = "${local.name}-${var.job_identifier}-policy"
-  policy = "${data.aws_iam_policy_document.main.json}"
+  policy = data.aws_iam_policy_document.main.json
 }
 
 # Lambda function
 module "amiclean_lambda" {
   source  = "trussworks/lambda/aws"
-  version = "~>1.0.0"
+  version = "~>2.0.0"
 
-  name                           = "${local.name}"
-  job_identifier                 = "${var.job_identifier}"
+  name                           = local.name
+  job_identifier                 = var.job_identifier
   runtime                        = "go1.x"
   role_policy_arns_count         = 1
-  role_policy_arns               = ["${aws_iam_policy.main.arn}"]
-  cloudwatch_logs_retention_days = "${var.cloudwatch_logs_retention_days}"
+  role_policy_arns               = [aws_iam_policy.main.arn]
+  cloudwatch_logs_retention_days = var.cloudwatch_logs_retention_days
 
-  s3_bucket = "${var.s3_bucket}"
+  s3_bucket = var.s3_bucket
   s3_key    = "${local.pkg}/${var.version_to_deploy}/${local.pkg}.zip"
 
   source_types = ["events"]
-  source_arns  = ["${aws_cloudwatch_event_rule.main.arn}"]
+  source_arns  = [aws_cloudwatch_event_rule.main.arn]
 
   env_vars = {
-    DELETE         = "${var.ami_clean_delete}"
-    NAME_PREFIX    = "${var.ami_clean_prefix}"
-    RETENTION_DAYS = "${var.ami_clean_retention_days}"
-    TAG_KEY        = "${var.ami_clean_tag_key}"
-    TAG_VALUE      = "${var.ami_clean_tag_value}"
-    INVERT         = "${var.ami_clean_invert}"
-
+    DELETE         = var.ami_clean_delete
+    NAME_PREFIX    = var.ami_clean_prefix
+    RETENTION_DAYS = var.ami_clean_retention_days
+    TAG_KEY        = var.ami_clean_tag_key
+    TAG_VALUE      = var.ami_clean_tag_value
+    INVERT         = var.ami_clean_invert
     # This will run the AMI cleaner with its Lambda handler.
     LAMBDA = true
   }
@@ -135,6 +135,7 @@ resource "aws_cloudwatch_event_rule" "main" {
 }
 
 resource "aws_cloudwatch_event_target" "main" {
-  rule = "${aws_cloudwatch_event_rule.main.name}"
-  arn  = "${module.amiclean_lambda.lambda_arn}"
+  rule = aws_cloudwatch_event_rule.main.name
+  arn  = module.amiclean_lambda.lambda_arn
 }
+
