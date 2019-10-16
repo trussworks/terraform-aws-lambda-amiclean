@@ -21,4 +21,4 @@ repos:
     hooks:
       - id: terraform_docs
       - id: terraform_fmt
-      - id: terraform_validate_no_variables
+  #   - id: terraform_validate_no_variables # doesn't work in TF12
