@@ -1,4 +1,3 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 Creates a Lambda function with associated role and policies that
 will run the ami-cleaner tool to get rid of AMIs that are no longer
 needed.
@@ -10,6 +9,11 @@ Creates the following resources:
   as well as write messages to Cloudwatch Logs
 * Cloudwatch Logs group
 * Cloudwatch Event to regularly run cleanup job.
+
+## Terraform Versions
+
+Terraform 0.12. Pin module version to ~> 2.0. Submit pull requests to `master` branch.
+Terraform 0.11. Pin module version to ~> 1.0. Submit pull requests to `terraform011` branch.
 
 ## Usage
 
@@ -48,5 +52,3 @@ as how to deploy it, see <https://github.com/trussworks/truss-aws-tools>.
 | Name | Description |
 |------|-------------|
 | lambda\_arn | ARN for the amicleaner lambda function |
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
