@@ -51,8 +51,6 @@ variable "ami_clean_profile" {
   type        = string
 }
 
-
-
 variable "cloudwatch_logs_retention_days" {
   default     = 90
   description = "Number of days to retain Cloudwatch logs. Default is 90 days."
@@ -80,4 +78,3 @@ variable "version_to_deploy" {
   description = "The version of the Lambda function to deploy."
   type        = string
 }
-
