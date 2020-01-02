@@ -33,6 +33,26 @@ variable "ami_clean_tag_value" {
   type        = string
 }
 
+variable "ami_clean_unused" {
+  default     = ""
+  description = "Only purge AMIs for which no running instances were built from."
+  type        = string
+}
+
+variable "ami_clean_region" {
+  default     = ""
+  description = "The AWS Region to use."
+  type        = string
+}
+
+variable "ami_clean_profile" {
+  default     = ""
+  description = "The AWS profile to use."
+  type        = string
+}
+
+
+
 variable "cloudwatch_logs_retention_days" {
   default     = 90
   description = "Number of days to retain Cloudwatch logs. Default is 90 days."
