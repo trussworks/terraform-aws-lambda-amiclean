@@ -41,6 +41,7 @@ as how to deploy it, see <https://github.com/trussworks/truss-aws-tools>.
 | ami\_clean\_retention\_days | Age of AMI in days before it is a candidate for removal. Default is 30 days. | string | `"30"` | no |
 | ami\_clean\_tag\_key | Key of tag to operate on. Requires tag value to also be set. | string | `""` | no |
 | ami\_clean\_tag\_value | Value of tag to operate on. Requires tag key to also be set. | string | `""` | no |
+| ami\_clean\_tag\_unused | Only purge AMIs for which no running instances were built from. | string | `""` | no |
 | cloudwatch\_logs\_retention\_days | Number of days to retain Cloudwatch logs. Default is 90 days. | string | `"90"` | no |
 | interval\_minutes | How often to run the AMI purging job, in minutes. Default is 1440 (1 day). | string | `"1440"` | no |
 | job\_identifier | A generic job identifier to make resources for this job more obvious. | string | n/a | yes |
