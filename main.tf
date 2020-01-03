@@ -119,8 +119,6 @@ module "amiclean_lambda" {
     TAG_VALUE      = var.ami_clean_tag_value
     INVERT         = var.ami_clean_invert
     UNUSED         = var.ami_clean_unused
-    AWS_PROFILE    = var.ami_clean_profile
-    AWS_REGION     = var.ami_clean_region
     # This will run the AMI cleaner with its Lambda handler.
     LAMBDA = true
   }

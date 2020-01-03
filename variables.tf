@@ -39,18 +39,6 @@ variable "ami_clean_unused" {
   type        = string
 }
 
-variable "ami_clean_region" {
-  default     = ""
-  description = "The AWS Region to use."
-  type        = string
-}
-
-variable "ami_clean_profile" {
-  default     = ""
-  description = "The AWS profile to use."
-  type        = string
-}
-
 variable "cloudwatch_logs_retention_days" {
   default     = 90
   description = "Number of days to retain Cloudwatch logs. Default is 90 days."
