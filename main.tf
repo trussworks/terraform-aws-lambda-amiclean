@@ -1,33 +1,3 @@
-/**
- * Creates a Lambda function with associated role and policies that
- * will run the ami-cleaner tool to get rid of AMIs that are no longer
- * needed.
- *
- * Creates the following resources:
- *
- * * Lambda function
- * * IAM role and policies to describe and delete AMIs and snapshots,
- *   as well as write messages to Cloudwatch Logs
- * * Cloudwatch Logs group
- * * Cloudwatch Event to regularly run cleanup job.
- *
- * ## Usage
- *
- * ```hcl
- * module "ami-clean-lambda" {
- *   source            = "trussworks/lambda-amiclean/aws"
- *   ami_clean_delete  = "true"
- *   ami_clean_prefix  = "sample_app"
- *   job_identifier    = "sample_app"
- *   s3_bucket         = "sample_app_lambdas"
- *   version_to_deploy = "2.7"
- * }
- * ```
- *
- * For more details on the capabilities of the ami-cleaner tool, as well
- * as how to deploy it, see <https://github.com/trussworks/truss-aws-tools>.
- */
-
 locals {
   pkg  = "truss-aws-tools"
   name = "ami-cleaner"
