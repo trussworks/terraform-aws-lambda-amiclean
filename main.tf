@@ -1,6 +1,7 @@
 locals {
-  pkg  = "truss-aws-tools"
-  name = "ami-cleaner"
+  pkg     = "truss-aws-tools"
+  name    = "ami-cleaner"
+  handler = "ami-cleaner"
 }
 
 data "aws_region" "current" {
@@ -15,6 +16,18 @@ data "aws_iam_policy_document" "main" {
 
     actions = [
       "ec2:DescribeImages",
+    ]
+
+    resources = ["*"]
+  }
+
+  # Allow describing Instances.
+  statement {
+    sid    = "DescribeInstances"
+    effect = "Allow"
+
+    actions = [
+      "ec2:DescribeInstances",
     ]
 
     resources = ["*"]
@@ -69,6 +82,7 @@ module "amiclean_lambda" {
   version = "~>2.4.0"
 
   name                           = local.name
+  handler                        = local.handler
   job_identifier                 = var.job_identifier
   runtime                        = "go1.x"
   role_policy_arns_count         = 1
