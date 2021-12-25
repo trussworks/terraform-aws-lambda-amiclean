@@ -79,7 +79,7 @@ resource "aws_iam_policy" "main" {
 # Lambda function
 module "amiclean_lambda" {
   source  = "trussworks/lambda/aws"
-  version = "~>2.4.0"
+  version = "~> 2.5.0"
 
   name                           = local.name
   handler                        = local.handler
