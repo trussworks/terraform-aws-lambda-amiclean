@@ -1,5 +1,7 @@
 # DEPRECIATION NOTICE
+ 
 This module has been deprecated and is no longer maintained. Should you need to continue to use it, please fork the repository. Thank you.
+ 
  Creates a Lambda function with associated role and policies that
 will run the ami-cleaner tool to get rid of AMIs that are no longer
 needed.
